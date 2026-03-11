@@ -1,0 +1,47 @@
+Projet : s_libc
+
+Description :
+Mini bibliothèque C implémentant plusieurs fonctions de la libc en assembleur x86 32 bits.
+
+Fonctions implémentées :
+- s_strlen
+- s_strcpy
+- s_strncpy
+- s_strcat
+- s_strncat
+- s_strcmp
+- s_strncmp
+- s_strchr
+- s_abs
+- s_div
+- s_pow
+- s_exp
+- s_puts
+
+Arborescence :
+- src/ : fichiers assembleur
+- include/ : fichiers d’en-tête
+- test/ : programme de test
+- lib/ : bibliothèque partagée
+- build/ : fichiers objets temporaires
+- doc/ : documentation
+
+Compilation :
+make
+
+Compilation des tests :
+make test
+
+Installation :
+make install
+
+Exécution :
+LD_LIBRARY_PATH=./lib ./testprog
+
+Auteurs :
+GAVOUKA François
+
+Le projet est compilé en 32 bits avec gcc -m32.
+
+License :
+Educational project for academic purposes.

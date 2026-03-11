@@ -1,0 +1,325 @@
+S_LIBC LIBRARY DOCUMENTATION
+============================
+
+INTRODUCTION
+------------
+
+The s_libc project consists in reimplementing several functions inspired
+from the C standard library (libc) using x86 32-bit assembly language.
+
+The goal of this project is to understand:
+
+- how low level functions work
+- how arguments are passed on the stack
+- how assembly interacts with C programs
+- how a shared library (.so) is built and used
+
+All functions follow the cdecl calling convention used by the C compiler.
+Arguments are passed on the stack and the return value is stored in the
+EAX register.
+
+BUILD
+-----
+
+To compile the library, run:
+
+    make
+
+This will generate the shared library:
+
+    lib/libs_libc.so
+
+
+TEST
+----
+
+To compile and run the tests:
+
+    make test
+    LD_LIBRARY_PATH=./lib ./testprog
+
+
+INSTALL
+-------
+
+To install the library into the system library directory:
+
+    make install
+
+--------------------------------------------------
+STRING FUNCTIONS
+--------------------------------------------------
+
+Function: s_strlen
+
+SYNOPSIS
+    int s_strlen(char *str);
+
+DESCRIPTION
+    The s_strlen function calculates the length of the string pointed to
+    by 'str'. The function scans the string character by character until
+    it encounters the null terminator ('\0').
+
+PARAMETERS
+    str : pointer to the string to analyze
+
+RETURN VALUE
+    The number of characters in the string excluding the terminating
+    null byte.
+
+
+--------------------------------------------------
+
+Function: s_strcpy
+
+SYNOPSIS
+    char *s_strcpy(char *dest, const char *src);
+
+DESCRIPTION
+    The s_strcpy function copies the string pointed to by 'src' into the
+    buffer pointed to by 'dest'. The copying process stops when the null
+    terminator is encountered.
+
+PARAMETERS
+    dest : destination buffer
+    src  : source string
+
+RETURN VALUE
+    Returns the pointer to the destination string (dest).
+
+
+--------------------------------------------------
+
+Function: s_strncpy
+
+SYNOPSIS
+    char *s_strncpy(char *dest, const char *src, int n);
+
+DESCRIPTION
+    The s_strncpy function copies at most 'n' characters from 'src' to
+    'dest'. If the source string is shorter than 'n', the destination is
+    padded with null bytes.
+
+PARAMETERS
+    dest : destination buffer
+    src  : source string
+    n    : maximum number of characters to copy
+
+RETURN VALUE
+    Returns the pointer to the destination string.
+
+
+--------------------------------------------------
+
+Function: s_strcat
+
+SYNOPSIS
+    char *s_strcat(char *dest, const char *src);
+
+DESCRIPTION
+    The s_strcat function appends the string 'src' to the end of 'dest'.
+    The function first searches for the null terminator of 'dest' and
+    then copies 'src' starting from that position.
+
+PARAMETERS
+    dest : destination string
+    src  : string to append
+
+RETURN VALUE
+    Returns the pointer to the destination string.
+
+
+--------------------------------------------------
+
+Function: s_strncat
+
+SYNOPSIS
+    char *s_strncat(char *dest, const char *src, int n);
+
+DESCRIPTION
+    The s_strncat function appends at most 'n' characters from 'src' to
+    the end of 'dest'. The resulting string is always null-terminated.
+
+PARAMETERS
+    dest : destination string
+    src  : string to append
+    n    : maximum number of characters to append
+
+RETURN VALUE
+    Returns the pointer to the destination string.
+
+
+--------------------------------------------------
+
+Function: s_strcmp
+
+SYNOPSIS
+    int s_strcmp(const char *s1, const char *s2);
+
+DESCRIPTION
+    The s_strcmp function compares two strings lexicographically. The
+    comparison is performed character by character until a difference is
+    found or until the null terminator is reached.
+
+PARAMETERS
+    s1 : first string
+    s2 : second string
+
+RETURN VALUE
+    Returns:
+        0  if both strings are equal
+        <0 if s1 is less than s2
+        >0 if s1 is greater than s2
+
+
+--------------------------------------------------
+
+Function: s_strncmp
+
+SYNOPSIS
+    int s_strncmp(const char *s1, const char *s2, int n);
+
+DESCRIPTION
+    The s_strncmp function compares at most 'n' characters of the two
+    strings.
+
+PARAMETERS
+    s1 : first string
+    s2 : second string
+    n  : number of characters to compare
+
+RETURN VALUE
+    Same behavior as s_strcmp but limited to 'n' characters.
+
+
+--------------------------------------------------
+
+Function: s_strchr
+
+SYNOPSIS
+    char *s_strchr(const char *s, int c);
+
+DESCRIPTION
+    The s_strchr function searches for the first occurrence of the
+    character 'c' in the string 's'.
+
+PARAMETERS
+    s : string to search
+    c : character to find
+
+RETURN VALUE
+    Returns a pointer to the located character or NULL if the character
+    is not found.
+
+
+--------------------------------------------------
+MATH FUNCTIONS
+--------------------------------------------------
+
+Function: s_abs
+
+SYNOPSIS
+    int s_abs(int x);
+
+DESCRIPTION
+    The s_abs function computes the absolute value of an integer.
+
+PARAMETERS
+    x : integer value
+
+RETURN VALUE
+    Returns the absolute value of x.
+
+
+--------------------------------------------------
+
+Function: s_div
+
+SYNOPSIS
+    div_t s_div(int numer, int denom);
+
+DESCRIPTION
+    The s_div function performs integer division and returns both the
+    quotient and the remainder.
+
+PARAMETERS
+    numer : numerator
+    denom : denominator
+
+RETURN VALUE
+    A structure containing:
+        result.quot : quotient
+        result.rem  : remainder
+
+
+--------------------------------------------------
+
+Function: s_pow
+
+SYNOPSIS
+    double s_pow(double base, int exp);
+
+DESCRIPTION
+    The s_pow function computes the power of a number using repeated
+    multiplication.
+
+PARAMETERS
+    base : base value
+    exp  : exponent
+
+RETURN VALUE
+    Returns base raised to the power exp.
+
+
+--------------------------------------------------
+
+Function: s_exp
+
+SYNOPSIS
+    double s_exp(double x);
+
+DESCRIPTION
+    The s_exp function approximates the exponential function e^x using a
+    Taylor series expansion.
+
+PARAMETERS
+    x : input value
+
+RETURN VALUE
+    Returns an approximation of e^x.
+
+
+--------------------------------------------------
+INPUT / OUTPUT FUNCTION
+--------------------------------------------------
+
+Function: s_puts
+
+SYNOPSIS
+    int s_puts(const char *s);
+
+DESCRIPTION
+    The s_puts function prints a string to the standard output followed
+    by a newline character.
+
+PARAMETERS
+    s : string to print
+
+RETURN VALUE
+    Returns 1 on success.
+
+
+--------------------------------------------------
+
+AUTHORS
+-------
+
+Student: GAVOUKA François
+
+Project: SAE - Assembly Library Implementation
+
+Institution: IUT De Velizy
+
+Year: 2025-2026
+
+END OF DOCUMENTATION
