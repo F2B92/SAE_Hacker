@@ -1,0 +1,49 @@
+crackmes 1 : 
+
+Login : superuser
+Password : AlphaPass
+
+
+Le fichier a d’abord été identifié avec la commande `file`, qui montre qu’il s’agit d’un exécutable ELF 32 bits. Ensuite, la commande `strings` a permis d’extraire les chaînes de caractères contenues dans le binaire. Les chaînes `superuser` et `AlphaPass` apparaissent directement dans le fichier, ce qui laisse penser qu’il s’agit des identifiants recherchés. Après exécution du programme et saisie de ces valeurs, le message `ACCESS GRANTED` a confirmé que ce sont les bons identifiants 
+
+
+crackmes 2 :
+
+Login:  du6Thoo7
+Password: EW8ingoh
+
+crackmes_3
+
+XahHaf1J
+Fae9v
+
+
+crackmes_4 
+77 99
+
+
+crackmes_5
+
+ebx + 0x28 ebx + 0x2c
+
+login : 145
+MDP : 954
+
+crackmes_6 
+Il s'agit de 2 nombre identiques qui constitue l'accès
+
+login : 123
+MDP : 123
+
+crackmes_7
+radar comme argument 
+ 
+crackmes_8 
+Pour ce crackme, la condition est que s'il y a le même nombre de majuscule que de minuscule en argument dans la chaine de charactère alors la condition est vérifiée
+AbCd comme argument 
+
+
+
+
+
+
