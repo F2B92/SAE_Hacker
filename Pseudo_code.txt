@@ -1,0 +1,246 @@
+1) strlen : 
+
+esi = s
+eax = 0
+
+loop:
+    si s[eax] == '\0'
+        fin
+
+    eax++
+    retourner à loop
+
+fin:
+    return eax
+
+
+
+
+2) strcpy : 
+i = 0
+
+loop:
+    dest[i] = src[i]
+
+    si src[i] == '\0'
+        fin
+
+    i++
+    retourner à loop
+
+fin:
+
+
+
+3) strncpy
+i = 0
+
+loop1:
+    si i >= n
+        fin
+
+    si src[i] == '\0'
+        aller à remplissage
+
+    dest[i] = src[i]
+    i++
+    retourner à loop1
+
+remplissage:
+    si i >= n
+        fin
+
+    dest[i] = '\0'
+    i++
+    retourner à remplissage
+
+fin:
+    retourner dest
+
+
+
+4) strcat
+esi = src
+edi = dest
+d = 0
+s = 0
+
+loop1:
+    si dest[d] == '\0'
+        Aller a Loop2
+
+    d++
+    Retourner a Loop1
+
+Loop2:
+    dest[d] = src[s]
+
+    si src[s] == '\0'
+        Fin
+
+    d++
+    s++
+    Retourner a Loop2
+
+Fin:
+    retourner dest
+
+ 
+
+
+
+5) strncat
+esi = src
+edi = dest
+d = 0
+s = 0
+
+loop1:
+    si dest[d] == '\0'
+        Aller a loop2
+
+    d++
+    Retourner a loop1
+
+loop2:
+    si n == 0
+        Aller a fin_zero
+
+    si src[s] == '\0'
+        Aller a fin_zero
+
+    dest[d] = src[s]
+    d++
+    s++
+    n--
+    Retourner a loop2
+
+fin_zero:
+    dest[d] = '\0'
+
+Fin:
+    retourner dest
+
+6) strcmp
+esi = s1
+edi = s2
+i = 0
+
+loop1:
+    si s1[i] == '\0'
+        Aller a Fin
+
+    si s1[i] != s2[i]
+        Aller a Fin
+
+    i++
+    Retourner a loop1
+
+Fin:
+    retourner s1[i] - s2[i]
+
+
+7) strncmp
+esi = s1
+edi = s2
+i = 0
+
+loop1:
+    si n == 0
+        Aller a Fin_zero
+
+    si s1[i] == '\0'
+        Aller a Fin
+
+    si s1[i] != s2[i]
+        Aller a Fin
+
+    i++
+    n--
+    Retourner a loop1
+
+Fin_zero:
+    retourner 0
+
+Fin:
+    retourner s1[i] - s2[i]+
+
+8) strchr
+esi = s
+i = 0
+
+loop1:
+    si s[i] == c
+        Aller a Fin_trouve
+
+    si s[i] == '\0'
+        Aller a Fin_zero
+
+    i++
+    Retourner a loop1
+
+Fin_trouve:
+    retourner &s[i]
+
+Fin_zero:
+    si c == '\0'
+        retourner &s[i]
+
+    retourner NULL
+
+
+9) abs
+eax = x
+
+si eax < 0
+    eax = -eax
+
+Fin:
+    retourner eax
+
+
+10) div
+eax = numer
+ebx = denom
+
+quot = numer / denom
+rem = numer % denom
+
+result.quot = quot
+result.rem = rem
+
+retourner result
+
+11) pow
+result = 1.0
+exp = exp
+base = base
+
+loop1:
+    si exp <= 0
+        Aller a Fin
+
+    result = result * base
+    exp--
+    Retourner a loop1
+
+Fin:
+    retourner result
+
+
+12) exp
+sum = 1
+term = 1
+i = 1
+
+loop1:
+    si i >= 20
+        Aller a Fin
+
+    term = term * x / i
+    sum = sum + term
+    i++
+    Retourner a loop1
+
+Fin:
+    retourner sum
